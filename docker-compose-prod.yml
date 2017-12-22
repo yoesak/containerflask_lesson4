@@ -11,14 +11,13 @@ services:
 
   users-service:
     container_name: users-service
+    command: gunicorn -b 0.0.0.0:5000 manage:app
     build: ./
-    volumes:
-      - '.:/usr/src/app'
     ports:
-      - 5001:5000 # expose ports - HOST: CONTAINER
+      - 5000:5000 # expose ports - HOST: CONTAINER
     environment:
-      - APP_SETTINGS=project.config.DevelopmentConfig
-      - DATABASE_URL=postgres://postgres:postgres@users-db:5432/users_dev
+      - APP_SETTINGS=project.config.ProductionConfig
+      - DATABASE_URL=postgres://postgres:postgres@users-db:5432/users_prod
       - DATABASE_TEST_URL=postgres://postgres:postgres@users-db:5432/users_test
     depends_on:
       - users-db

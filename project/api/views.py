@@ -12,7 +12,7 @@ users_blueprint = Blueprint('users', __name__)
 def ping_pong():
     return jsonify({
         'status': 'success',
-        'message': 'pong!'
+        'message': 'ping-pong!'
     })
 
 @users_blueprint.route('/users', methods=['POST'])
